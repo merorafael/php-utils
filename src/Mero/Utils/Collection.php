@@ -9,11 +9,11 @@ class Collection implements \ArrayAccess
     /**
      * @var array Array primitive
      */
-    protected $container;
+    protected $elements;
 
     public function __construct(array $array = [])
     {
-        $this->container = $array;
+        $this->elements = $array;
     }
 
     /**
@@ -21,7 +21,7 @@ class Collection implements \ArrayAccess
      */
     public function offsetExists($offset)
     {
-        return isset($this->container[$offset]);
+        return isset($this->elements[$offset]);
     }
 
     /**
@@ -29,8 +29,8 @@ class Collection implements \ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset])
-            ? $this->container[$offset]
+        return isset($this->elements[$offset])
+            ? $this->elements[$offset]
             : null;
     }
 
@@ -40,9 +40,9 @@ class Collection implements \ArrayAccess
     public function offsetSet($offset, $value)
     {
         if (null === $offset) {
-            $this->container[] = $value;
+            $this->elements[] = $value;
         } else {
-            $this->container[$offset] = $value;
+            $this->elements[$offset] = $value;
         }
     }
 
@@ -51,7 +51,7 @@ class Collection implements \ArrayAccess
      */
     public function offsetUnset($offset)
     {
-        unset($this->container[$offset]);
+        unset($this->elements[$offset]);
     }
 
     /**
@@ -61,7 +61,17 @@ class Collection implements \ArrayAccess
      */
     public function count()
     {
-        return count($this->container);
+        return count($this->elements);
+    }
+
+    /**
+     * Gets the PHP array representation of this collection.
+     *
+     * @return array PHP array representation of this collection
+     */
+    public function toArray()
+    {
+        return $this->elements;
     }
 
     /**
@@ -73,7 +83,7 @@ class Collection implements \ArrayAccess
      */
     public function find(\Closure $closure)
     {
-        foreach ($this->container as &$it) {
+        foreach ($this->elements as &$it) {
             if ($closure($it) === true) {
                 return $it;
             }
@@ -90,7 +100,7 @@ class Collection implements \ArrayAccess
     public function findAll(\Closure $closure)
     {
         $newCollection = new Collection();
-        foreach ($this->container as &$it) {
+        foreach ($this->elements as &$it) {
             if ($closure($it) === true) {
                 $newCollection[] = $it;
             }
@@ -110,7 +120,7 @@ class Collection implements \ArrayAccess
     public function collect(\Closure $closure)
     {
         $newCollection = new Collection();
-        foreach ($this->container as &$it) {
+        foreach ($this->elements as &$it) {
             $newCollection[] = $closure($it);
         }
 
