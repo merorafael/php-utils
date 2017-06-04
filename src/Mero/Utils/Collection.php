@@ -2,7 +2,7 @@
 
 namespace Mero\Utils;
 
-class Collection implements \ArrayAccess
+class Collection implements \Countable, \Iterator, \ArrayAccess
 {
     use ClassNameTrait;
 
@@ -14,6 +14,54 @@ class Collection implements \ArrayAccess
     public function __construct(array $array = [])
     {
         $this->elements = $array;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function count()
+    {
+        return count($this->elements);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function current()
+    {
+        return current($this->elements);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function next()
+    {
+        return next($this->elements);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function key()
+    {
+        return key($this->elements);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function valid()
+    {
+        return isset($this->elements[$this->key()]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rewind()
+    {
+        reset($this->elements);
     }
 
     /**
@@ -52,16 +100,6 @@ class Collection implements \ArrayAccess
     public function offsetUnset($offset)
     {
         unset($this->elements[$offset]);
-    }
-
-    /**
-     * Counts all elements in the collection.
-     *
-     * @return int Number of elements
-     */
-    public function count()
-    {
-        return count($this->elements);
     }
 
     /**
@@ -127,5 +165,38 @@ class Collection implements \ArrayAccess
         }
 
         return $collection;
+    }
+
+    /**
+     * Iterates through an Collection, passing each item to the given closure.
+     *
+     * @param \Closure $closure
+     *
+     * @return Collection
+     */
+    public function each(\Closure $closure)
+    {
+        foreach ($this->elements as &$it) {
+            $closure($it);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Iterates through an Collection, passing each item and the item's index (a counter starting at zero)
+     * to the given closure.
+     *
+     * @param \Closure $closure
+     *
+     * @return Collection
+     */
+    public function eachWithIndex(\Closure $closure)
+    {
+        foreach ($this->elements as $index => &$it) {
+            $closure($it, $index);
+        }
+
+        return $this;
     }
 }

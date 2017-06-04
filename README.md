@@ -96,14 +96,52 @@ transform closure returning a list of transformed values.
 
 use Mero\Utils\Collection;
 
-$var = new Collection([
-    1,
-    2,
-    3,
-]);
+$var = new Collection([1, 2, 3]);
 
 $var->collect(function($it) {
     return $it * 3;
 }); // Will return [3, 6, 9]
+```
+
+##### each()
+
+Iterates through an Collection, passing each item to the given closure.
+
+```php
+<?php
+
+use Mero\Utils\Collection;
+
+$var = new Collection([1, 2, 3]);
+
+$var->each(function($it) {
+    echo $it."\n";
+});
+
+// Will return:
+// 1
+// 2
+// 3
+```
+
+##### eachWithIndex()
+
+Iterates through an Collection, passing each item to the given closure.
+
+```php
+<?php
+
+use Mero\Utils\Collection;
+
+$var = new Collection(['Element1', 'Element2', 'Element3']);
+
+$var->each(function($it, $index) {
+    echo $index." - ".$it."\n";
+});
+
+// Will return:
+// 0 - Element1
+// 1 - Element2
+// 2 - Element3
 ```
  
