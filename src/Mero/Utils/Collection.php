@@ -4,6 +4,8 @@ namespace Mero\Utils;
 
 class Collection implements \ArrayAccess
 {
+    use ClassNameTrait;
+
     /**
      * @var array Array primitive
      */

@@ -1,6 +1,13 @@
 Mero Utils
 ==========
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/24892481-5df4-476e-b25c-67ca7fee6bd4/mini.png)](https://insight.sensiolabs.com/projects/24892481-5df4-476e-b25c-67ca7fee6bd4)
+[![Build Status](https://travis-ci.org/merorafael/php-utils.svg?branch=master)](https://travis-ci.org/merorafael/php-utils)
+[![Coverage Status](https://coveralls.io/repos/github/merorafael/php-utils/badge.svg?branch=master)](https://coveralls.io/github/merorafael/php-utils?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/mero/utils/v/stable.svg)](https://packagist.org/packages/mero/utils)
+[![Total Downloads](https://poser.pugx.org/mero/utils/downloads.svg)](https://packagist.org/packages/mero/utils)
+[![License](https://poser.pugx.org/mero/utils/license.svg)](https://packagist.org/packages/mero/utils)
+
 Library with features that increase productivity
 
 Instalation with composer

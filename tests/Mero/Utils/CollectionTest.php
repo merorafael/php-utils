@@ -4,6 +4,11 @@ namespace Mero\Utils;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {
+    public function testClassName()
+    {
+        $this->assertEquals(Collection::className(), 'Mero\Utils\Collection');
+    }
+
     public function testCount()
     {
         $collection = new Collection(['Element1', 'Element2']);
