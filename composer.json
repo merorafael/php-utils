@@ -1,0 +1,41 @@
+{
+  "name": "mero/utils",
+  "type": "library",
+  "description": "Library with features that increase productivity",
+  "keywords": [ "Mero", "Utils", "Collection" ],
+  "homepage": "https://github.com/merorafael/php-utils",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rafael Mello",
+      "email": "merorafael@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.9"
+  },
+  "require-dev": {
+    "satooshi/php-coveralls": "~0.6.1",
+    "phpunit/phpunit": "~4.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mero\\Utils\\": "src/Mero/Utils"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mero\\Utils\\": "tests/Mero/Utils"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1.x-dev"
+    }
+  },
+  "scripts": {
+    "test": [
+      "phpunit"
+    ]
+  }
+}
