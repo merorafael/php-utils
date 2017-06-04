@@ -75,11 +75,11 @@ class Collection implements \ArrayAccess
     }
 
     /**
-     * Finds all values matching the closure condition.
+     * Finds the first value matching the closure condition.
      *
      * @param \Closure $closure
      *
-     * @return array|Collection
+     * @return mixed
      */
     public function find(\Closure $closure)
     {
@@ -88,10 +88,12 @@ class Collection implements \ArrayAccess
                 return $it;
             }
         }
+
+        return;
     }
 
     /**
-     * Finds the first value matching the closure condition.
+     * Finds all values matching the closure condition.
      *
      * @param \Closure $closure
      *
@@ -99,14 +101,14 @@ class Collection implements \ArrayAccess
      */
     public function findAll(\Closure $closure)
     {
-        $newCollection = new Collection();
+        $collection = new Collection();
         foreach ($this->elements as &$it) {
             if ($closure($it) === true) {
-                $newCollection[] = $it;
+                $collection[] = $it;
             }
         }
 
-        return $newCollection;
+        return $collection;
     }
 
     /**
@@ -119,11 +121,11 @@ class Collection implements \ArrayAccess
      */
     public function collect(\Closure $closure)
     {
-        $newCollection = new Collection();
+        $collection = new Collection();
         foreach ($this->elements as &$it) {
-            $newCollection[] = $closure($it);
+            $collection[] = $closure($it);
         }
 
-        return $newCollection;
+        return $collection;
     }
 }

@@ -59,7 +59,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['Element1'], $array);
     }
 
-    public function testFind()
+    public function testFindFound()
     {
         $collection = new Collection([1, 2, 3, 4]);
 
@@ -68,6 +68,17 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         });
 
         $this->assertEquals(4, $result);
+    }
+
+    public function testFindNotFound()
+    {
+        $collection = new Collection([1, 2, 3, 4]);
+
+        $result = $collection->find(function ($it) {
+            return $it == 5;
+        });
+
+        $this->assertNull($result);
     }
 
     public function testFindAll()
