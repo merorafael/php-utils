@@ -135,7 +135,7 @@ use Mero\Utils\Collection;
 
 $var = new Collection(['Element1', 'Element2', 'Element3']);
 
-$var->each(function($it, $index) {
+$var->eachWithIndex(function($it, $index) {
     echo $index." - ".$it."\n";
 });
 
